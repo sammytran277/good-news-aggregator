@@ -4,11 +4,11 @@
 
 ## **Table of Contents**
 
- * [Introduction](introduction)
- * [Learning Objectives](learning-objectives)
- * [Link to Web App](link-to-web-app)
- * [Site Features](site-features)
- * [Technologies](technologies)
+ * [Introduction](#introduction)
+ * [Learning Objectives](#learning-objectives)
+ * [Link to Web App](#link-to-web-app)
+ * [Site Features](#site-features)
+ * [Technologies](#technologies)
 
 ## **Introduction**
 
