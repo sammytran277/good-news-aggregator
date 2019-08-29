@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  ⛅ Home
+{% endblock %}
+
+{% block div %}
+  <li class="nav-item active">
+    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/about">About</a>
+  </li>
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <h2 class="font-weight-light text-center text-lg mt-4 mb-0">{{ quote }}</h2>
+    <hr class="mt-2 mb-4">
+    <div class="row justify-content-center">
+      <form class="form-inline" id="filter" action="/" method="POST" novalidate>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="websites" type="checkbox" class="custom-control-input" id="Option1" value="thehappybroadcast.com" checked>
+          <label class="custom-control-label" for="Option1">The Happy Broadcast</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="websites" type="checkbox" class="custom-control-input" id="Option2" value="today.com" checked>
+          <label class="custom-control-label" for="Option2">Today</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="websites" type="checkbox" class="custom-control-input" id="Option3" value="sunnyskyz.com" checked>
+          <label class="custom-control-label" for="Option3">Sunny Skyz</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="websites" type="checkbox" class="custom-control-input" id="Option4" value="positive.news" checked>
+          <label class="custom-control-label" for="Option4">Positive News</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="websites" type="checkbox" class="custom-control-input" id="Option5" value="goodnewsnetwork.org"  checked>
+          <label class="custom-control-label" for="Option5">Good News Network</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input name="websites" type="checkbox" class="custom-control-input" id="Option6" value="huffpost.com" checked>
+          <label class="custom-control-label" for="Option6">Huffpost</label>
+        </div>
+        <button id="filterButton" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Filter</button>
+      </form>
+
+      <div class="card-columns">
+
+        {% for article in articles %}
+          <a target="_blank" rel="noopener noreferrer" href="{{ article['link'] }}" class="filtered">
+            <div class="card bg-primary">
+              <img class="card-img-top img-fluid img-thumbnail" src="{{ article['image'] }}">
+
+              {% if article['title'] != "None" %}
+                <div class="card-body caption text-center text-white">{{ article['title'] }}</div>
+              {% endif %}
+              
+            </div>
+          </a>
+        {% endfor %}
+        
+      </div>
+
+      <button id="loadMore" type="button" class="btn btn-outline-primary mt-4 mb-4">Load More</button>
+    </div>
+  </div>
+{% endblock %}
+

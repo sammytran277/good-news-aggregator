@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- CSS link AFTER Font Awesome -->
+    <link rel="stylesheet" href="static/style.css">
+    
+    <!-- Prevents favicon.ico 404 errors -->
+    <link rel="shortcut icon" href="#"/> 
+
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+  <body>
+    <!-- Bootstrap navigation bar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary border-bottom">
+      <a class="navbar-brand" href="#">⛅ The Good News Aggregator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            {% block div %}{% endblock %}
+          </ul>
+          <form class="form-inline needs-validation" action="/search" method="GET" novalidate>
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search" autocomplete="off" required>
+            <button id="search" class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>         
+          </form>
+      </div>
+    </nav>
+
+    <!-- Other templates will fill out the main block -->
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+    <!-- JavaScript snippet courtesy of http://updateyourfooter.com/ -->
+    <nav class="bg-light pb-3">
+      <footer class="page-footer font-small border-top">
+          <div class="font-weight-light footer-copyright text-center pt-3">All news articles belong to the organizations that published them. This aggregator simply aims to make them more accessible to all.</div>
+          <div class="page-bottom font-weight-light footer-copyright text-center">&copy; 
+            <script>
+              document.write(new Date().getFullYear());
+            </script> Sammy Tran. All rights reserved.
+          </div>
+      </footer>
+    </nav>
+
+    <!-- JavaScript snippet courtesy of https://getbootstrap.com/docs/4.0/components/forms/? -->
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- JavaScript link for filter -->
+    <script src="static/filter.js"></script>
+
+      <!-- JavaScript link for load more -->
+      <script src="static/load.js"></script>
+  </body>
+</html>

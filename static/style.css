@@ -1,0 +1,66 @@
+/* Move page contents so they aren't hidden by the nav bar being fixed */
+.container {
+  padding-top: 70px;
+}
+
+/* Gives card text some padding on all sides */
+.caption {
+  padding: 10px;
+}
+
+/* Bottom margin for the filter form */
+#filter {
+  margin-bottom: 24px;
+}
+
+/* Making the card columns responsive */
+/* https://stackoverflow.com/questions/34140793/bootstrap-4-responsive-cards-in-card-columns/52588856 */
+@media only screen and (min-width: 576px) {
+  .card-columns {
+      column-count: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-columns {
+      column-count: 2;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .card-columns {
+      column-count: 3;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card-columns {
+      column-count: 3;
+  }
+}
+
+/* Hide the search button when the device is small or medium sized */
+@media only screen and (max-width: 900px) {
+  #search {
+      display: none;
+  }
+}
+
+/* Styling the about page text */
+.about {
+  font-size: 25px;
+}
+
+/* Styling the about page links */
+#websites {
+  font-size: 20px;
+}
+
+/* Styling the about page social media icons */
+.fa {
+  padding: 5px;
+  font-size: 30px;
+  width: 30px;
+  text-decoration: none;
+  color: #333232;
+}

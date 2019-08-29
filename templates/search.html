@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  ⛅ Search
+{% endblock %}
+
+{% block div %}
+  <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/about">About</a>
+  </li>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <h2 class="font-weight-light text-center text-lg mt-4 mb-0">
+
+    {% if num_of_articles != 1 %}
+      {{ num_of_articles }} articles found with "{{ keyword }}" in it!
+    {% else %}
+      {{ num_of_articles }} article found with "{{ keyword }}" in it!
+    {% endif %}
+    
+  </h2>
+  <hr class="mt-2 mb-5">
+  <div class="row text-center text-lg-left">
+    <div class="card-columns">
+
+      {% for article in articles %}
+        <a target="_blank" rel="noopener noreferrer" href="{{ article['link'] }}">
+          <div class="card bg-primary">
+            <img class="card-img-top img-fluid img-thumbnail" src="{{ article['image'] }}">
+
+            {% if article['title'] != "None" %}
+              <div class="card-body caption text-center text-white">{{ article['title'] }}</div>
+            {% endif %}
+            
+          </div>
+        </a>
+      {% endfor %}
+      
+    </div>
+  </div>
+</div>
+{% endblock %}
+
