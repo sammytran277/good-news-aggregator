@@ -20,7 +20,7 @@ The goal of this project was to apply what I had learned from CS50x to develop a
 
 ## **Link to Web App**
 
-TO BE ADDED 
+https://good-news-aggregator.azurewebsites.net/ 
 
 ## **Site Features**
 
@@ -56,3 +56,7 @@ TO BE ADDED
 ### **Database Technology**
 
   * SQLite3
+
+### **Other Notable Technology**
+
+ * Microsoft Azure
