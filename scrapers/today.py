@@ -1,7 +1,7 @@
 """Scraping script for today.com"""
 
 from bs4 import BeautifulSoup
-from string import capwords
+from helper import fix_title
 
 import requests
 import sqlite3
@@ -35,7 +35,7 @@ def get_articles(url):
         soup = BeautifulSoup(page_content, features="html.parser")\
 
         image = soup.find("meta", {"property": "og:image"})["content"]
-        title = capwords(soup.find("title").text)
+        title = fix_title(soup.find("title").text)
 
         articles.append({"link": link, "image": image, "title": title})
 

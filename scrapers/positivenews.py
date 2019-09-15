@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from time import sleep
-from string import capwords
+from helper import fix_title
 
 import sqlite3
 
@@ -15,13 +15,13 @@ def get_articles(url):
     # Set up driver, open URL, and wait for page to load
     driver = webdriver.Chrome()
     driver.get(url)
-    wait = WebDriverWait(driver, 10)
+    WebDriverWait(driver, 10)
 
     # Get rid of the pop-up ad that blocks the load more button
     driver.find_element_by_css_selector(".btn--dismiss").click()
 
     # Press the load more button 19 times (120 articles in total)
-    for i in range(19):
+    for _ in range(19):
         driver.find_element_by_css_selector(".btn").click()
         sleep(1.5)
 
@@ -43,30 +43,12 @@ def get_articles(url):
 
         link = card_title.get_attribute("href")
         image = img_element.get_attribute("src")
-        title = capwords(card_title.get_attribute("innerHTML"))
-
-        # Fix title capitalization if the title starts with an apostrophe
-        if title.startswith("‘"):
-            title = fix_title(title)
+        title = fix_title(card_title.get_attribute("innerHTML"))
 
         articles.append({"link": link, "image": image, "title": title})
 
     driver.quit()
     return articles
-
-
-def fix_title(title):
-    """Capitalize the first letter after a quotation mark"""
-
-    fixed_title = []
-
-    for letter in title:
-        fixed_title.append(letter)
-
-    # Capitalize the letter after the apostrophe
-    fixed_title[1] = fixed_title[1].upper()
-
-    return "".join(fixed_title)
 
 
 if __name__ == "__main__":

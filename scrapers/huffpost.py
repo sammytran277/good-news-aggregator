@@ -7,6 +7,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 from time import sleep
+from helper import fix_title
 
 import sqlite3
 
@@ -21,7 +22,7 @@ def get_links(url):
     driver = webdriver.Chrome(options=options)
 
     driver.get(url)
-    wait = WebDriverWait(driver, 10)
+    WebDriverWait(driver, 10)
 
     # Click the load more button 3 times to load more articles to scrape
     for i in range(3):
@@ -42,9 +43,7 @@ def get_links(url):
 
         # Get the link for each article in the zone
         for card in cards:
-            img_element = card.find_element_by_css_selector(".img-sized__img")
             link = card.get_attribute("href")
-
             article_links.append(link)
 
     driver.quit()
@@ -64,13 +63,14 @@ def get_articles(links):
         # Read HTML of the webpage
         try:
             webpage = urlopen(req).read()
-        except urllib.error.HTTPError:
+
+        except HTTPError:
             exit("This URL caused an error:", link)
 
         soup = BeautifulSoup(webpage, "html.parser")
 
         image = soup.find("meta", {"property": "og:image"})["content"]
-        title = soup.find("meta", {"property": "og:title"})["content"]
+        title = fix_title(soup.find("meta", {"property": "og:title"})["content"])
 
         articles.append({"link": link, "image": image, "title": title})
 

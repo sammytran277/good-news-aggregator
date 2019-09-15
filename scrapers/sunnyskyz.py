@@ -1,6 +1,7 @@
 """Scraping script for sunnyskyz.com"""
 
 from bs4 import BeautifulSoup
+from helper import fix_title
 
 import requests
 import sqlite3
@@ -21,7 +22,7 @@ def get_articles(url):
     for post in posts:
         link = "https://www.sunnyskyz.com" + post["href"]
         image = post.find("img")["src"]
-        title = post.find("p", {"class": "titlenews"}).text
+        title = fix_title(post.find("p", {"class": "titlenews"}).text)
 
         articles.append({"link": link, "image": image, "title": title})
 
