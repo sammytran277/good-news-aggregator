@@ -39,6 +39,13 @@
   }
 }
 
+/* Change the layout of the filter buttons on mobile */
+@media only screen and (max-width: 480px) {
+  .custom-control-inline {
+    width: 100%;
+  }
+}
+
 /* Hide the search button when the device is small or medium sized */
 @media only screen and (max-width: 900px) {
   #search {

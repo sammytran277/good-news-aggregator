@@ -2,7 +2,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup
@@ -24,9 +24,16 @@ def get_links(url):
     driver.get(url)
     WebDriverWait(driver, 10)
 
-    # Click the load more button 3 times to load more articles to scrape
-    for i in range(3):
-        driver.find_element_by_css_selector(".see-more").click()
+    # Click the load more button 4 times to load more articles to scrape
+    for i in range(4):
+
+        # Click survey pop-up if it prevents the see more button from being clicked
+        try:
+            driver.find_element_by_css_selector(".see-more").click()
+
+        except ElementClickInterceptedException:
+            driver.find_element_by_css_selector(".feedback-toaster__close__icon").click()
+
         sleep(1.5)
 
     zones = driver.find_elements_by_css_selector(".zone__content")
