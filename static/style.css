@@ -43,6 +43,7 @@
 @media only screen and (max-width: 480px) {
   .custom-control-inline {
     width: 100%;
+    margin-left: 25%;
   }
 }
 
