@@ -15,7 +15,7 @@ bs4 == 0.0.1
 # scrapers\sunnyskyz.py: 5
 # scrapers\thehappybroadcast.py: 5
 # scrapers\today.py: 6
-requests == 2.22.0
+requests == 2.31.0
 
 # scrapers\huffpost.py: 3,4,5
 # scrapers\positivenews.py: 3,4,5
